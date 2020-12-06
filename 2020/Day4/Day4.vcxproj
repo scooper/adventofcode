@@ -147,11 +147,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Passport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventCommon\AdventCommon.vcxproj">
       <Project>{391a48f1-2fae-40e7-a042-fb8b003fe70b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Passport.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
