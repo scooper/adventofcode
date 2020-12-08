@@ -1,3 +1,6 @@
+//
+// Simple wrapper for loading files and processing them into different formats
+//
 #pragma once
 #include <vector>
 #include <string>
@@ -6,13 +9,14 @@
 namespace AdventCommon
 {
 
-    class FileLoader
+    class File
     {
     public:
-        FileLoader(const char* filepath);
-        ~FileLoader();
+        File(const char* filepath);
+        ~File();
 
        bool NextLine(std::string &line);
+       std::string AsStr() { return m_Buffer.str(); }
 
     private:
         std::stringstream m_Buffer;

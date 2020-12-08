@@ -3,7 +3,7 @@
 #include <sstream>
 #include <regex> // I'll leave this here because I tried to use you but you're a bitch
 #include <vector>
-#include <Util/FileLoader.h>
+#include <Util/File.h>
 
 struct Policy
 {
@@ -19,7 +19,7 @@ std::vector<int> ExtractNumsFromString(std::string input);
 
 int main()
 {
-    AdventCommon::FileLoader fileLoader("D:/Projects/adventofcode/2020/inputs/Day2/input.txt");
+    AdventCommon::File fileLoader("D:/Projects/adventofcode/2020/inputs/Day2/input.txt");
 
     int validPasswordsOld = 0, validPasswordsNew = 0;
 

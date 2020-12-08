@@ -1,4 +1,4 @@
-#include <Util/FileLoader.h>
+#include <Util/File.h>
 #include <string>
 #include <iostream>
 
@@ -6,7 +6,7 @@
 
 int main()
 {
-    AdventCommon::FileLoader fileLoader("D:/Projects/adventofcode/2020/inputs/Day5/input.txt");
+    AdventCommon::File fileLoader("D:/Projects/adventofcode/2020/inputs/Day5/input.txt");
     //AdventCommon::FileLoader fileLoader("D:/Projects/adventofcode/2020/inputs/Day5/inputTest.txt");
 
     Plane plane;

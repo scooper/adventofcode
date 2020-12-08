@@ -3,7 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
-#include <Util/FileLoader.h>
+#include <Util/File.h>
 
 std::vector<int> findPairIntsThatSumToX(std::vector<int>& numbers, int x);
 std::vector<int> find3IntsThatSumToX(std::vector<int>& numbers, int x);
@@ -11,7 +11,7 @@ std::vector<int> find3IntsThatSumToX(std::vector<int>& numbers, int x);
 int main()
 {
 
-    AdventCommon::FileLoader fileLoader("D:/Projects/adventofcode/2020/inputs/Day1/input.txt");
+    AdventCommon::File fileLoader("D:/Projects/adventofcode/2020/inputs/Day1/input.txt");
 
     std::vector<int> numbers;
 

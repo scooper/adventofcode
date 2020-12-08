@@ -1,4 +1,4 @@
-#include <Util/FileLoader.h>
+#include <Util/File.h>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -67,7 +67,7 @@ int SlopeData::GetCharIntersectionsForGradient(Gradient gradient, char character
 
 void SlopeData::Load(const char* filepath)
 {
-    AdventCommon::FileLoader fileLoader(filepath);
+    AdventCommon::File fileLoader(filepath);
 
     // initialise
     m_Height = 0;

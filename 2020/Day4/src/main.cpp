@@ -1,4 +1,4 @@
-#include <Util/FileLoader.h>
+#include <Util/File.h>
 #include <vector>
 #include <sstream>
 #include <string>
@@ -11,7 +11,7 @@
 
 int main()
 {
-    AdventCommon::FileLoader fileLoader("D:/Projects/adventofcode/2020/inputs/Day4/input.txt");
+    AdventCommon::File fileLoader("D:/Projects/adventofcode/2020/inputs/Day4/input.txt");
 
     // one to hold the credential type and one to show whether it is missing
 

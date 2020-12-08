@@ -1,11 +1,11 @@
-#include "FileLoader.h"
+#include "File.h"
 #include <iostream>
 #include <fstream>
 
 namespace AdventCommon
 {
 
-    FileLoader::FileLoader(const char* filepath)
+    File::File(const char* filepath)
     {
         std::ifstream fileStream;
 
@@ -24,14 +24,16 @@ namespace AdventCommon
 
     }
 
-    FileLoader::~FileLoader()
+    File::~File()
     {
     }
 
-    bool FileLoader::NextLine(std::string &line)
+    bool File::NextLine(std::string &line)
     {
         bool isLine = (bool)std::getline(m_Buffer, line);
+        m_Buffer.clear();
         return isLine;
+
     }
 
 }
