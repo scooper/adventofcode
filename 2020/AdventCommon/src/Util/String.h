@@ -14,6 +14,7 @@ namespace AdventCommon
     {
     public:
         static std::vector<std::string> Split(std::string input, std::string delimiter);
-        bool IsNumber(std::string& input);
+        static std::string Join(std::vector<std::string>& input, std::string delimiter);
+        static bool IsNumber(std::string& input);
     };
 }

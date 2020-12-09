@@ -1,4 +1,5 @@
 #include "String.h"
+#include <sstream>
 
 namespace AdventCommon
 {
@@ -24,6 +25,20 @@ namespace AdventCommon
             stringys.push_back(input);
 
         return stringys;
+    }
+
+    std::string String::Join(std::vector<std::string>& input, std::string delimiter)
+    {
+        std::stringstream buffer;
+        for (std::string str : input)
+        {
+            if (str == *(input.end()-1))
+                buffer << str;
+            else
+                buffer << str << delimiter;
+        }
+
+        return buffer.str();
     }
 
     // Returns true if given string is a number (specifically a number with no fractional part)

@@ -16,6 +16,7 @@ namespace AdventCommon
         ~File();
 
        bool NextLine(std::string &line);
+       void Reset();
        std::string AsStr() { return m_Buffer.str(); }
 
     private:
