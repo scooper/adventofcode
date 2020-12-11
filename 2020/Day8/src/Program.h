@@ -17,6 +17,12 @@ struct InstructionResponse
     std::string comment;
 };
 
+struct ExecutionResponse
+{
+    bool finished;
+    int line;
+    int accumulator;
+};
 
 struct Line
 {
@@ -30,9 +36,11 @@ class Program
 public:
     Program(std::vector<std::string> instructions);
 
-    void Execute(bool allowRepeatInstructions = false);
+    ExecutionResponse Execute(bool allowRepeatInstructions = false);
     int Reset();
     void ChangeLineInstructionType(int lineNum, InstructionType type);
+    Line GetLine(int lineNum) { return *(m_Instructions.begin() + lineNum); };
+    int Length() { return m_Instructions.size(); }
 private:
 
     std::vector<Line>::iterator m_Position;

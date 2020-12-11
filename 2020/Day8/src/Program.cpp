@@ -33,12 +33,14 @@ Program::Program(std::vector<std::string> instructions)
     m_Position = m_Instructions.begin();
 }
 
-void Program::Execute(bool allowRepeatInstructions)
+ExecutionResponse Program::Execute(bool allowRepeatInstructions)
 {
     bool running = true;
+    bool finished = true;
+    InstructionResponse response;
     while (running)
     {
-        InstructionResponse response = ProcessInstruction(allowRepeatInstructions);
+        response = ProcessInstruction(allowRepeatInstructions);
 
         if (!response.success)
         {
@@ -48,7 +50,14 @@ void Program::Execute(bool allowRepeatInstructions)
 
     }
 
+    ExecutionResponse execResponse = { false, response.line, m_Accumulator };
+
+    if (response.line == -1)
+        execResponse.finished = true;
+
     std::cout << "Accumulator ended at: " << m_Accumulator << std::endl;
+
+    return execResponse;
 }
 
 int Program::Reset()
@@ -63,7 +72,7 @@ int Program::Reset()
     }
 
     m_Position = m_Instructions.begin();
-
+    m_Accumulator = 0;
     return linesExecuted;
 }
 
