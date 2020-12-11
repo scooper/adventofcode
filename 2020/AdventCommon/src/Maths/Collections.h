@@ -1,5 +1,11 @@
 #pragma once
 #include <vector>
+#include <algorithm>
+
+// TODO: just wrap some STL algorithm stuff in here to make it easier
+//       - std::find
+//       - std::sort
+//       - std::equal
 
 namespace AdventCommon
 {
