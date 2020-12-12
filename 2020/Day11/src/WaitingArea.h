@@ -4,6 +4,7 @@
 
 enum class ChairState
 {
+    INVALID,
     FLOOR,
     EMPTY,
     OCCUPIED
@@ -13,11 +14,14 @@ class WaitingArea
 {
 public:
     WaitingArea(std::vector<std::string> input);
-    int ApplyRules();
+    int ApplyOldRules();
+    int ApplyNewRules();
 
 private:
     ChairState GetChairState(int x, int y);
     int GetNumAdjacentOccupied(int x, int y);
+    int GetNumVisibleOccupied(int x, int y);
+    int GetNumOccupied();
     int m_Width;
     int m_Length;
     std::vector<ChairState> m_Chairs;
