@@ -3,12 +3,15 @@
 #include <Util/File.h>
 #include <string>
 #include <algorithm>
+#include <unordered_map>
+
+uint64_t DepthFirstRecursiveSearch(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end);
 
 int main()
 {
 
-    //AdventCommon::File file("D:/Projects/adventofcode/2020/inputs/Day10/input.txt");
-    AdventCommon::File file("D:/Projects/adventofcode/2020/inputs/Day10/inputTest.txt");
+    AdventCommon::File file("D:/Projects/adventofcode/2020/inputs/Day10/input.txt");
+    //AdventCommon::File file("D:/Projects/adventofcode/2020/inputs/Day10/inputTest.txt");
     //AdventCommon::File file("D:/Projects/adventofcode/2020/inputs/Day10/inputTest2.txt");
 
     std::vector<int> adapters;
@@ -55,40 +58,47 @@ int main()
 
     std::cout << "1JD x 3JD = " << diff1 * diff3 << std::endl;
 
-    // sort top to bottom
-    std::sort(adapters.begin(), adapters.end(), [](const int& a, const int& b) { return a > b; });
-
-    int validTotal = 1;
-
-    for (std::vector<int>::const_iterator it = adapters.begin(); it != adapters.end()-1; it++)
-    {
-        int validOptions = 0;
-        for (std::vector<int>::const_iterator it2 = it + 1; it2 != adapters.end(); it2++)
-        {
-
-            int targetJoltage = *it;
-            int testJoltage = *it2;
-
-            // get joltage difference
-            if ((targetJoltage - testJoltage) > 3)
-            {
-                break;
-            }
-            else
-            {
-                validOptions++;
-            }
-        }
-
-        validTotal *= validOptions;
-    }
-
-
-    std::cout << "Total Valid Adapter Configurations: " << validTotal << std::endl;
-
+    std::cout << "Total Valid Adapter Configurations: " << DepthFirstRecursiveSearch(adapters.begin(), adapters.end()) << std::endl;
 
     return 0;
 }
 
-// TODO: write recursive function that traverses tree of possible options in a depth-first-search manner
-//       look at notes taken to refresh memory of how to approach the problem
+
+std::unordered_map<int, uint64_t> cache;
+
+//
+// This is fucked: works for input examples 1 and 2 but not the big input
+// something is wrong with this function, maybe too slow or some condition I'm missing where it goes into an infinite recursion
+// this can probably be done with some simple counting maths
+//
+// EDIT: it was too slow, used a cache instead, fuck being clever
+//
+uint64_t DepthFirstRecursiveSearch(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end)
+{
+    if (start == end-1)
+        return 1;
+    
+    // skip the nightmare
+    if (cache.find(*start) != cache.end())
+        return cache[*start];      
+
+    uint64_t numOptions = 0;
+
+    for (std::vector<int>::const_iterator it = start+1; it != end; it++)
+    {
+        int targetJoltage = *start;
+        int testJoltage = *it;
+
+        int diff = testJoltage - targetJoltage;
+
+        if (diff <= 3)
+            numOptions += DepthFirstRecursiveSearch(it, end);
+        else
+            break;     
+    }
+
+    // add to cache so we never have to calculate it again
+    cache[*start] = numOptions;
+
+    return numOptions;
+}
