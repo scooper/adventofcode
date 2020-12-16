@@ -1,13 +1,15 @@
 #pragma once
+#define _USE_MATH_DEFINES
 #include <iostream>
 #include <string>
 #include <vector>
 #include <cmath>
+#include <math.h>
 
 struct Position
 {
-    int x;
-    int y;
+    long x;
+    long y;
 
     Position& operator +(const Position& other)
     {
@@ -49,7 +51,8 @@ class Ship
 public:
     Ship();
 
-    void DoInstruction(std::string& instruction);
+    void DoInstructionOld(std::string& instruction);
+    void DoInstructionNew(std::string& instruction);
 
     int GetManhattanDistance() { return std::abs(m_ShipPos.x) + std::abs(m_ShipPos.y); }
 
