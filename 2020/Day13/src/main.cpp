@@ -42,16 +42,16 @@ void Part1(std::vector<int>& busIDs, int& earliestDepartTime)
     return;
 }
 
-// WARNING: SLOW
-void Part2(std::vector<BusListing> listings)
+// WARNING: SLOW and just all around awful
+void Part2(std::vector<BusListing> listings, uint64_t minhint = 0)
 {
-    for (long long i = 1; i > 0; i++)
+    bool outerLoopBreak = false;
+    uint64_t i = minhint;
+    while(!outerLoopBreak)
     {
-        // TODO: rethink loop end condition as we want to check if we get to the end of
-        //       the bus listings list - not leave the loop (maybe use iterators)
-        for (long long j = 0; j < listings.size(); j++)
+        for (uint64_t j = 0; j < listings.size(); j++)
         {
-            long long minute = j + i;
+            uint64_t minute = j + i;
             if (listings[j].unrestricted)
                 continue;
             if (minute % listings[j].id != 0)
@@ -62,12 +62,13 @@ void Part2(std::vector<BusListing> listings)
             if (j == listings.size() - 1)
             {
                 std::cout << "Earliest minute fulfilling conditions is " << i << std::endl;
-                i = -1;
+                outerLoopBreak = true;
                 break;
             }
 
             // if complete, outer loop -1 and break while adding the earliest time stamp info (i)
         }
+        i++;
     }
 
     return;
@@ -105,7 +106,7 @@ int main()
     }
 
     Part1(busIDs, earliestDepartTime);
-    Part2(busListings);
+    Part2(busListings, 100000000000000);
 
     return 0;
 }
