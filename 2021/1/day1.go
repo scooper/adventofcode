@@ -1,32 +1,9 @@
 package main
 
 import (
-	"bufio"
+	utilities "adventofcode/utility"
 	"fmt"
-	"os"
-	"strconv"
 )
-
-func readFileIntoSlice(path string) ([]int, error) {
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-
-	defer file.Close()
-
-	var lines []int
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lineInt, err := strconv.Atoi(scanner.Text())
-		if err != nil {
-			return nil, err
-		}
-		lines = append(lines, lineInt)
-	}
-
-	return lines, scanner.Err()
-}
 
 func getNumOfDepthIncreases(depths []int) int {
 	previous := -1
@@ -61,7 +38,7 @@ func getNumOfDepthIncreasesRollingWindow(depths []int, windowSize int) int {
 }
 
 func main() {
-	lines, err := readFileIntoSlice("input")
+	lines, err := utilities.ReadFileIntoSliceI("input")
 
 	if err != nil {
 		panic(err)
