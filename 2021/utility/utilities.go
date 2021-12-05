@@ -2,6 +2,7 @@ package utilities
 
 import (
 	"bufio"
+	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
@@ -85,6 +86,29 @@ func ReadFileIntoSliceSplitString(path string, delimiter string) ([][]string, er
 	}
 
 	return lines, scanner.Err()
+}
+
+func SplitFileByDelimiter(path string, delimiter string) ([]string, error) {
+	fileContent, err := ioutil.ReadFile(path)
+
+	if err != nil {
+		return nil, err
+	}
+
+	// remove carriage returns so they dont screw up byte->string conversion
+	return strings.Split(strings.ReplaceAll(string(fileContent), "\r", ""), delimiter), nil
+}
+
+func StringSliceToIntSlice(input []string) []int {
+	var output []int
+	for _, element := range input {
+		elementAsInt, err := strconv.Atoi(element)
+		CheckError(err)
+
+		output = append(output, elementAsInt)
+	}
+
+	return output
 }
 
 func CheckError(err error) {
