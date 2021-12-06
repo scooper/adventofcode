@@ -9,7 +9,7 @@ A place to hold my Advent of Code submissions, starting in 2020
 |3|:star::star2:|:star::star2:|
 |4|:star::star2:|:star::star2:|
 |5|:star::star2:||
-|6|:star::star2:||
+|6|:star::star2:|:star::star2:|
 |7|:star::star2:||
 |8|:star::star2:||
 |9|:star::star2:||
