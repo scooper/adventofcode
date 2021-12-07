@@ -67,8 +67,4 @@ func main() {
 	fmt.Printf("Min Fuel Used (Fast Approach): %d\n", minimumSumOfDistancesBetweenAllPositions(initialCrabPositions))
 
 	fmt.Printf("Min Fuel Used w/ Rate Increase (Slow Approach): %d\n", minimumSumOfDistancesBetweenAllPositionsSlow(initialCrabPositions, true))
-
-	// part 2 notes:
-	// instead of stepping through and adding 1 every time we can calculate the distance the same way
-	// but use sum of 1 to n which is: (n(n+1))/2
 }
