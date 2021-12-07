@@ -8,6 +8,8 @@ import (
 	"strings"
 )
 
+// files
+
 func ReadFileIntoSliceI(path string) ([]int, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -99,6 +101,8 @@ func SplitFileByDelimiter(path string, delimiter string) ([]string, error) {
 	return strings.Split(strings.ReplaceAll(string(fileContent), "\r", ""), delimiter), nil
 }
 
+// slice operations
+
 func StringSliceToIntSlice(input []string) []int {
 	var output []int
 	for _, element := range input {
@@ -111,11 +115,27 @@ func StringSliceToIntSlice(input []string) []int {
 	return output
 }
 
+func RemoveDuplicatesISlice(input []int) []int {
+	dupMap := make(map[int]bool)
+	var cleanSlice []int
+	for _, num := range input {
+		if _, found := dupMap[num]; !found {
+			dupMap[num] = true
+			cleanSlice = append(cleanSlice, num)
+		}
+	}
+
+	return cleanSlice
+}
+
+// error helpers
 func CheckError(err error) {
 	if err != nil {
 		panic(err)
 	}
 }
+
+// maths
 
 func MaxI(a int, b int) int {
 	if a > b {
@@ -130,5 +150,14 @@ func MinI(a int, b int) int {
 		return a
 	} else {
 		return b
+	}
+}
+
+// should be unsigned really but cba with conversions
+func AbsI(val int) int {
+	if val < 0 {
+		return val * -1
+	} else {
+		return val
 	}
 }
