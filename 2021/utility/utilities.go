@@ -52,6 +52,27 @@ func ReadFileIntoSliceF64(path string) ([]float64, error) {
 	return lines, scanner.Err()
 }
 
+// constructs a matrix line by line, each row made by splitting said line into a slice
+func ReadFileAndSplitLinesIntoMatrixI(path string, delimiter string) ([][]int, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+
+	defer file.Close()
+
+	var matrix [][]int
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lineSplit := StringSliceToIntSlice(strings.Split(scanner.Text(), delimiter))
+
+		matrix = append(matrix, lineSplit)
+
+	}
+
+	return matrix, scanner.Err()
+}
+
 func ReadFileIntoSliceString(path string) ([]string, error) {
 	file, err := os.Open(path)
 	if err != nil {
