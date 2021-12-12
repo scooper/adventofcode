@@ -182,3 +182,37 @@ func AbsI(val int) int {
 		return val
 	}
 }
+
+// string stuff
+
+func StrLen(s string) int {
+	return len([]rune(s))
+}
+
+func StrDiff(a string, b string) string {
+	sb := new(strings.Builder)
+	foundMap := make(map[rune]struct{})
+
+	var bigger string
+	var smaller string
+
+	if StrLen(a) >= StrLen(b) {
+		bigger = a
+		smaller = b
+	} else {
+		smaller = a
+		bigger = b
+	}
+
+	for _, char := range smaller {
+		foundMap[char] = struct{}{}
+	}
+
+	for _, char := range bigger {
+		if _, found := foundMap[char]; !found {
+			sb.WriteRune(char)
+		}
+	}
+
+	return sb.String()
+}
