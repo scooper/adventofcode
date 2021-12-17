@@ -1,7 +1,7 @@
 package main
 
 import (
-	utilities "adventofcode/utility"
+	utilities "adventofcode/utility/common"
 	"fmt"
 	"strconv"
 	"strings"

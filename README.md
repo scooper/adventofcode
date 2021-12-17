@@ -14,7 +14,7 @@ A place to hold my Advent of Code submissions, starting in 2020
 |8|:star::star2:|:star::star2:|
 |9|:star::star2:|:star::star2:|
 |10|:star::star2:|:star::star2:|
-|11|:star::star2:||
+|11|:star::star2:|:star::star2:|
 |12|:star::star2:||
 |13|:star:||
 |14|:star:||
