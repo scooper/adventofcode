@@ -2,7 +2,7 @@ package main
 
 import (
 	utilities "adventofcode/utility/common"
-	"adventofcode/utility/structures"
+	"adventofcode/utility/structures/matrix"
 	"fmt"
 	"image"
 	"image/color"
@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-func printMatrix(mat structures.Matrix) {
+func printMatrix(mat matrix.Matrix) {
 	m, n := mat.Size()
 
 	for mi := 0; mi < m; mi++ {
@@ -25,7 +25,7 @@ func printMatrix(mat structures.Matrix) {
 	}
 }
 
-func matrixToImage(mat structures.Matrix) *image.Paletted {
+func matrixToImage(mat matrix.Matrix) *image.Paletted {
 	m, n := mat.Size()
 
 	colWeight := int(255 / 9)
@@ -58,7 +58,7 @@ func posToKey(m, n int) string {
 	return fmt.Sprintf("%d-%d", m, n)
 }
 
-func doFlash(m, n int, mat structures.Matrix, flashed map[string]int) {
+func doFlash(m, n int, mat matrix.Matrix, flashed map[string]int) {
 
 	initKey := posToKey(m, n)
 	if _, found := flashed[initKey]; found {
@@ -86,7 +86,7 @@ func doFlash(m, n int, mat structures.Matrix, flashed map[string]int) {
 	}
 }
 
-func doStep(mat structures.Matrix) int {
+func doStep(mat matrix.Matrix) int {
 	m, n := mat.Size()
 
 	flashed := make(map[string]int)
@@ -124,7 +124,7 @@ func main() {
 
 	utilities.CheckError(err)
 
-	matrix := structures.NewMatrixFromInput(input)
+	matrix := matrix.NewMatrixFromInput(input)
 
 	printMatrix(matrix)
 	fmt.Println()
