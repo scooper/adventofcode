@@ -14,7 +14,7 @@ struct Args {
     hello_world: bool,
 
     /// the day number of the challenge
-    #[arg(short, long, default_value_t = 0)]
+    #[arg(short, long)]
     challenge: usize,
 
     /// the path to the input to use for the challenge
@@ -35,6 +35,9 @@ fn main() {
 
     if !challenge_option.is_none() {
         let day = challenge_option.unwrap();
-        day.run(args.input_path.unwrap());
+        let filepath = args.input_path.unwrap();
+        day.run(filepath);
+    } else {
+        println!("Challenge not found, only challenges 1 to {} are available.", challenges.len());
     }
 }
