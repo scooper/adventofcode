@@ -10,7 +10,7 @@ struct Elf {
 
 impl Challenge for Day1 {
     fn run(&self, filepath: PathBuf) {
-        println!("-------- Day 1 Challenge ---------\nPart 1:");
+        println!("Part 1:");
         let input = file_to_string(filepath);
 
         let input_split = input.split("\r\n");
