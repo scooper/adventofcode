@@ -4,7 +4,7 @@ A place to hold my Advent of Code submissions, starting in 2020
 
 |Day|2020(C++)|2021(Go)|2022(Rust)|
 |---|---------|--------|----------|
-|1|:star::star2:|:star::star2:|:star:|
+|1|:star::star2:|:star::star2:|:star::star2:|
 |2|:star::star2:|:star::star2:||
 |3|:star::star2:|:star::star2:||
 |4|:star::star2:|:star::star2:||

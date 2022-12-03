@@ -29,14 +29,22 @@ impl Challenge for Day1 {
             elves[len-1].calories += line.parse::<i32>().unwrap();
         }
 
-        let mut most_caloried_elf: &Elf = elves.first().unwrap();
-        for (_, elf) in elves.iter().enumerate() {
-            println!("Elf {} calories: {}", elf.num, elf.calories);
-            if elf.calories > most_caloried_elf.calories {
-                most_caloried_elf = elf;
-            }
-        }
+        // let mut most_caloried_elf: &Elf = elves.first().unwrap();
+        // for (_, elf) in elves.iter().enumerate() {
+        //     println!("Elf {} calories: {}", elf.num, elf.calories);
+        //     if elf.calories > most_caloried_elf.calories {
+        //         most_caloried_elf = elf;
+        //     }
+        // }
 
+        elves.sort_by(|a, b| b.calories.cmp(&a.calories));
+        let most_caloried_elf = &elves[0];
+
+        
         println!("Elf {} has most calories @ {}", most_caloried_elf.num, most_caloried_elf.calories);
+        println!("Part 2:");
+
+        let total_highest_3_calories = elves[0].calories + elves[1].calories + elves[2].calories;
+        println!("Top 3 Elf Calories Total = {}", total_highest_3_calories);
     }
 }
