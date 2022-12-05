@@ -11,7 +11,7 @@ struct Game {
 }
 
 impl Challenge for Day2 {
-    fn run(&self, filepath: PathBuf) {
+    fn run(&self, filepath: PathBuf, verbose_output: bool) {
         let input = file_to_string(filepath);
         let input_split = input.split("\n");
 
@@ -101,7 +101,12 @@ impl Challenge for Day2 {
             part2_total_score += part_2_score;
 
             let game = Game { first, second, part_1_score, part_2_score: part_2_score};
-            println!("First: {}, Second: {}, Score (1): {}, Score(2): {}", game.first, game.second, game.part_1_score, game.part_2_score);
+
+
+            if verbose_output {
+                println!("First: {}, Second: {}, Score (1): {}, Score(2): {}", game.first, game.second, game.part_1_score, game.part_2_score);
+            }
+            
             games.push(game);
         }
 

@@ -1,30 +1,35 @@
 mod common;
 mod day1;
 mod day2;
+mod day3;
 
 use clap::Parser;
 use std::path::PathBuf;
 
-use crate::{common::Challenge, day1::Day1, day2::Day2};
+use crate::{common::Challenge, day1::Day1, day2::Day2, day3::Day3};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 struct Args {
-    /// simple hello world program
+    /// Simple hello world program for testing
     #[arg(long, default_value_t = false)]
     hello_world: bool,
 
-    /// the day number of the challenge
+    /// Display all output 
+    #[arg(short, long, default_value_t = false)]
+    verbose: bool,
+
+    /// The day number of the challenge
     #[arg(short, long)]
     challenge: usize,
 
-    /// the path to the input to use for the challenge
+    /// The path to the input to use for the challenge
     #[arg(short, long)]
     input_path: Option<PathBuf>,
 }
 
 fn main() {
-    let challenges: Vec<&dyn Challenge> = vec![&Day1(), &Day2()];
+    let challenges: Vec<&dyn Challenge> = vec![&Day1(), &Day2(), &Day3()];
 
     let args = Args::parse();
 
@@ -38,7 +43,7 @@ fn main() {
         let day = challenge_option.unwrap();
         let filepath = args.input_path.unwrap();
         println!("-------- Day {} Challenge ---------", args.challenge);
-        day.run(filepath);
+        day.run(filepath, args.verbose);
     } else {
         println!("Challenge not found, only challenges 1 to {} are available.", challenges.len());
     }

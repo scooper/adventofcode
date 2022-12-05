@@ -1,7 +1,7 @@
 use std::{path::PathBuf, fs::File, io::Read};
 
 pub trait Challenge {
-    fn run(&self, filepath: PathBuf);
+    fn run(&self, filepath: PathBuf, verbose_output: bool);
 }
 
 

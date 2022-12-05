@@ -9,7 +9,7 @@ struct Elf {
 }
 
 impl Challenge for Day1 {
-    fn run(&self, filepath: PathBuf) {
+    fn run(&self, filepath: PathBuf, _verbose_output: bool) {
         println!("Part 1:");
         let input = file_to_string(filepath);
 
