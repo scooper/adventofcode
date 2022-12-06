@@ -1,10 +1,5 @@
 use std::{path::PathBuf, fs::File, io::Read};
 
-pub trait Challenge {
-    fn run(&self, filepath: PathBuf, verbose_output: bool);
-}
-
-
 // add file opening utility
 
 pub fn file_to_string(filepath: PathBuf) -> String {

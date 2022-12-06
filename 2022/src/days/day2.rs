@@ -1,4 +1,4 @@
-use crate::{common::Challenge, common::file_to_string};
+use crate::{days::Challenge, common::file_to_string};
 use std::{path::PathBuf, vec};
 
 pub struct Day2 ();

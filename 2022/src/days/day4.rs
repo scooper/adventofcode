@@ -1,4 +1,4 @@
-use crate::{common::Challenge, common::file_to_string};
+use crate::{days::Challenge, common::file_to_string};
 use std::path::PathBuf;
 
 pub struct Day4 ();
@@ -26,23 +26,23 @@ impl Challenge for Day4 {
                 .unwrap();
 
                 
-                let mut fully_contained = false;
-                let mut partial_contained = false;
-                
-                if elf1_start <= elf2_start && elf1_end >= elf2_end || elf2_start <= elf1_start && elf2_end >= elf1_end {
-                    fully_contained_pairs += 1;
-                    fully_contained = true;
-                }
+            let mut fully_contained = false;
+            let mut partial_contained = false;
+            
+            if elf1_start <= elf2_start && elf1_end >= elf2_end || elf2_start <= elf1_start && elf2_end >= elf1_end {
+                fully_contained_pairs += 1;
+                fully_contained = true;
+            }
 
-                if elf1_start <= elf2_end && elf2_start <= elf1_end {
-                    any_overlap_pairs += 1;
-                    partial_contained = true;
-                }
-                
-                if verbose_output {
-                    println!("Elf1: {}-{} Elf2: {}-{}, Fully Contained = {}, Partial Contained = {}",
-                    elf1_start, elf1_end, elf2_start, elf2_end, fully_contained, partial_contained);
-                }
+            if elf1_start <= elf2_end && elf2_start <= elf1_end {
+                any_overlap_pairs += 1;
+                partial_contained = true;
+            }
+            
+            if verbose_output {
+                println!("Elf1: {}-{} Elf2: {}-{}, Fully Contained = {}, Partial Contained = {}",
+                elf1_start, elf1_end, elf2_start, elf2_end, fully_contained, partial_contained);
+            }
                 
         }
 
