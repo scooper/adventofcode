@@ -2,11 +2,12 @@ mod common;
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 use clap::Parser;
 use std::path::PathBuf;
 
-use crate::{common::Challenge, day1::Day1, day2::Day2, day3::Day3};
+use crate::{common::Challenge, day1::Day1, day2::Day2, day3::Day3, day4::Day4};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -29,7 +30,7 @@ struct Args {
 }
 
 fn main() {
-    let challenges: Vec<&dyn Challenge> = vec![&Day1(), &Day2(), &Day3()];
+    let challenges: Vec<&dyn Challenge> = vec![&Day1(), &Day2(), &Day3(), &Day4()];
 
     let args = Args::parse();
 
