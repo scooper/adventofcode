@@ -1,4 +1,4 @@
-A place to hold my Advent of Code submissions, starting in 2020
+A place to hold my Advent of Code submissions. 2020-2022.
 
 ## Table of Completed Challenges
 
