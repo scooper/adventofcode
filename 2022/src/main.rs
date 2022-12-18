@@ -27,7 +27,8 @@ struct Args {
 }
 
 fn main() {
-    let challenges: Vec<&dyn Challenge> = vec![&day1::Day1(), &day2::Day2(), &day3::Day3(), &day4::Day4(), &day5::Day5()];
+    let challenges: Vec<&dyn Challenge> = vec![&day1::Day1(),&day2::Day2(), &day3::Day3(), &day4::Day4(), &day5::Day5(),
+                                               &day6::Day6()];
 
     let args = Args::parse();
 

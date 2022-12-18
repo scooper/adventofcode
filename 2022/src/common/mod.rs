@@ -1,4 +1,4 @@
-use std::{path::PathBuf, fs::File, io::Read};
+use std::{path::PathBuf, fs::File, io::Read, hash::Hash, collections::HashSet};
 
 // add file opening utility
 
@@ -16,4 +16,13 @@ pub fn file_to_string(filepath: PathBuf) -> String {
     }
 
     return s;
+}
+
+pub fn is_unique<T>(iter: T) -> bool
+where
+T: IntoIterator,
+T::Item: Eq + Hash,
+{
+    let mut unique = HashSet::new();
+    iter.into_iter().all(move |x| unique.insert(x))
 }
