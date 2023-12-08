@@ -1,5 +1,6 @@
 #include "cmd.h"
 #include "config.h"
+#include "io.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,6 +16,7 @@ void parse_args(int argc, char *argv[]) {
         cmd_help.callback(nullptr);
     }
 
+    // check args
     for (int i = 1; i < argc - 1; i++) {
         const char *arg = argv[i];
         for (int j = 0; j < CMD_NUM; j++) {
@@ -54,12 +56,13 @@ void parse_args(int argc, char *argv[]) {
         return;
     }
     if (day_to_run - 1 < 0 || day_to_run - 1 > DAYS_NUM - 1) {
-        printf("Day is not in range 0 - %d, %s\n", DAYS_NUM, see_help);
+        printf("Day is not in range 1 - %d, %s\n", DAYS_NUM, see_help);
         return;
     }
-  
+
     // run day
-    days[day_to_run - 1].day_impl(argv[argc - 1]);
+    char *file_txt = read_file_to_string(argv[argc - 1]);
+    days[day_to_run - 1].day_impl(file_txt);
 }
 
 void set_day(const char *day) { day_to_run = atoi(day); }

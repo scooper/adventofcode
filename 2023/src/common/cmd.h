@@ -14,6 +14,7 @@ void verbose_on(const char *_);
 void print_help(const char *_);
 
 #define CMD_NUM 2
+// probably better as a hash table - would need to make one
 static cmd_option cmds[CMD_NUM] = {{false, "-v", "--verbose", &verbose_on},
                                    {true, "-d", "--day", &set_day}};
 static const cmd_option cmd_help = {false, "-h", "--help", &print_help};

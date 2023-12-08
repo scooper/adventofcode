@@ -1,7 +1,7 @@
 #ifndef DAY_H
 #define DAY_H
 
-#include "20231201/entry.h"
+#include "01/entry.h"
 
 typedef struct day {
     int num;
