@@ -7,18 +7,23 @@
 #include "day.h"
 
 int day_to_run = -1;
-char *input_name = nullptr;
-
 void parse_args(int argc, char *argv[]) {
-    for (int i = 0; i < argc; i++) {
+
+    // check for help
+    if (argc > 1 && (strcmp(argv[1], cmd_help.cmd_short) == 0 ||
+                     strcmp(argv[1], cmd_help.cmd_long) == 0)) {
+        cmd_help.callback(nullptr);
+    }
+
+    for (int i = 1; i < argc - 1; i++) {
         const char *arg = argv[i];
         for (int j = 0; j < CMD_NUM; j++) {
             cmd_option option = cmds[j];
             if (strcmp(arg, option.cmd_short) == 0) {
                 if (option.has_arg) {
-                    if (i + 1 >= argc) {
-                        printf("Arg not provided for option '%s', '%s'\n",
-                               option.cmd_short, option.cmd_long);
+                    if (i + 1 >= argc - 1) {
+                        printf("Arg not provided for option '%s', '%s', %s\n",
+                               option.cmd_short, option.cmd_long, see_help);
                         return;
                     }
                     const char *option_arg = argv[++i];
@@ -31,8 +36,8 @@ void parse_args(int argc, char *argv[]) {
                 if (option.has_arg) {
                     const char *equals = strstr(arg, "=");
                     if (equals == nullptr) {
-                        printf("Arg not provided for option '%s', '%s'\n",
-                               option.cmd_short, option.cmd_long);
+                        printf("Arg not provided for option '%s', '%s', %s\n",
+                               option.cmd_short, option.cmd_long, see_help);
                         return;
                     }
                     option.callback((equals + 1));
@@ -45,15 +50,16 @@ void parse_args(int argc, char *argv[]) {
     }
 
     if (day_to_run == -1) {
-        printf("Day has not been provided, run ('-h', '--help') for usage.\n");
+        printf("Day has not been provided, %s\n", see_help);
         return;
     }
     if (day_to_run - 1 < 0 || day_to_run - 1 > DAYS_NUM - 1) {
-        printf("Day is not in range 0 - %d\n", DAYS_NUM);
+        printf("Day is not in range 0 - %d, %s\n", DAYS_NUM, see_help);
         return;
     }
-
-    days[day_to_run - 1].day_impl("something");
+  
+    // run day
+    days[day_to_run - 1].day_impl(argv[argc - 1]);
 }
 
 void set_day(const char *day) { day_to_run = atoi(day); }
