@@ -16,6 +16,7 @@ char *read_file_to_string(char *input_path) {
             fread(buffer, 1, length, file);
         } else {
             printf("File is empty.\n");
+            free(buffer);
             exit(1);
         }
         fclose(file);

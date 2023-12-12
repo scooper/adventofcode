@@ -1,6 +1,9 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
 typedef struct config {
     bool verbose;
     int day;
 } config;
 
-config g_config = {false, 1};
+#endif // CONFIG_H

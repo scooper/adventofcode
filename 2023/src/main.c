@@ -1,7 +1,7 @@
 #include "common/cmd.h"
 
 int main(int argc, char *argv[]) {
-    parse_args(argc, argv);
+    run_cmds(argc, argv);
 
     return 0;
 }

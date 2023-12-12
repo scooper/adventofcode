@@ -1,11 +1,12 @@
 #ifndef DAY_H
 #define DAY_H
 
-#include "01/entry.h"
+#include "01/main.h"
+#include "config.h"
 
 typedef struct day {
     int num;
-    void (*day_impl)(const char *input);
+    void (*day_impl)(const char *input, config *config);
 } day;
 
 #define DAYS_NUM 1

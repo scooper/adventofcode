@@ -1,5 +1,4 @@
 #include "cmd.h"
-#include "config.h"
 #include "io.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,13 +6,13 @@
 
 #include "day.h"
 
-int day_to_run = -1;
-void parse_args(int argc, char *argv[]) {
+void run_cmds(int argc, char *argv[]) {
+    config config = {false, -1};
 
     // check for help
     if (argc > 1 && (strcmp(argv[1], cmd_help.cmd_short) == 0 ||
                      strcmp(argv[1], cmd_help.cmd_long) == 0)) {
-        cmd_help.callback(nullptr);
+        cmd_help.callback(nullptr, &config);
     }
 
     // check args
@@ -29,9 +28,9 @@ void parse_args(int argc, char *argv[]) {
                         return;
                     }
                     const char *option_arg = argv[++i];
-                    option.callback(option_arg);
+                    option.callback(option_arg, &config);
                 } else {
-                    option.callback(nullptr);
+                    option.callback(nullptr, &config);
                 }
                 break;
             } else if (strstr(arg, option.cmd_long) != nullptr) {
@@ -42,37 +41,38 @@ void parse_args(int argc, char *argv[]) {
                                option.cmd_short, option.cmd_long, see_help);
                         return;
                     }
-                    option.callback((equals + 1));
+                    option.callback((equals + 1), &config);
                 } else {
-                    option.callback(nullptr);
+                    option.callback(nullptr, &config);
                 }
                 break;
             }
         }
     }
 
-    if (day_to_run == -1) {
+    if (config.day == -1) {
         printf("Day has not been provided, %s\n", see_help);
         return;
     }
-    if (day_to_run - 1 < 0 || day_to_run - 1 > DAYS_NUM - 1) {
+    if (config.day - 1 < 0 || config.day - 1 > DAYS_NUM - 1) {
         printf("Day is not in range 1 - %d, %s\n", DAYS_NUM, see_help);
         return;
     }
 
     // run day
     char *file_txt = read_file_to_string(argv[argc - 1]);
-    days[day_to_run - 1].day_impl(file_txt);
+    days[config.day - 1].day_impl(file_txt, &config);
+    free(file_txt);
 }
 
-void set_day(const char *day) { day_to_run = atoi(day); }
+void set_day(const char *day, config *config) { config->day = atoi(day); }
 
-void verbose_on(const char *_) {
+void verbose_on(const char *_, config *config) {
     printf("verbose is on\n");
-    g_config.verbose = true;
+    config->verbose = true;
 }
 
-void print_help(const char *_) {
+void print_help(const char *_, config *config) {
     printf("aoc_2023 - Advent of Code 2023\n\n"
            "Usage:\t aoc_2023 [options] [input]\n"
            "\t e.g. aoc_2023 -d 1 foo/bar.txt\n\n"
