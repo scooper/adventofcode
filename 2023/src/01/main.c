@@ -1,7 +1,9 @@
 #include "main.h"
 #include "common/config.h"
+#include "common/util.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void day_1_impl(const char *input, config *config) {
     part_1(input, config);
@@ -67,4 +69,17 @@ void part_1(const char *input, config *config) {
     free(calibration_values);
 }
 
-void part_2(const char *input, config *config) {}
+void part_2(const char *input, config *config) {
+    char* input_c;
+    input_c = malloc(sizeof(char) * strlen(input));
+    strcpy(input_c, input);
+
+    // for(char* token = strtok(input_c, "\n"); token != nullptr; token = strtok(nullptr, "\n")) {
+    //     printf("%s\n", token);
+    // }
+    util_str_replace(input_c, "one", "1");
+ 
+
+    free(input_c);
+
+}
